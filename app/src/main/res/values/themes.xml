@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SafeRoute" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_red_dark</item>
+        <item name="colorAccent">@color/primary_red</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Card style used across all screens -->
+    <style name="SafeRoute.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="strokeColor">@color/divider</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Red primary button -->
+    <style name="SafeRoute.Button.Red" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary_red</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Outlined secondary button -->
+    <style name="SafeRoute.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/divider</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_types">
+        <item>ALERT</item>
+        <item>INFO</item>
+        <item>SAFE</item>
+    </string-array>
+    <string-array name="campus_locations">
+        <item>Main Library</item>
+        <item>Block A — Lecture Hall</item>
+        <item>Block B — Computer Lab</item>
+        <item>Student Hub</item>
+        <item>Cafeteria</item>
+        <item>Sports Complex</item>
+        <item>Car Park A</item>
+        <item>Car Park B</item>
+        <item>Main Gate</item>
+        <item>Back Gate</item>
+        <item>Medical Centre</item>
+    </string-array>
+</resources>

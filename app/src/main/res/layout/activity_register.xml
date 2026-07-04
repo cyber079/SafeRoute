@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="28dp">
+        <ImageButton android:id="@+id/btnBack"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            android:contentDescription="Back"
+            android:layout_marginBottom="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Create Account" android:textSize="26sp" android:textStyle="bold"
+            android:textColor="@color/text_primary" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Register with your university email"
+            android:textSize="14sp" android:textColor="@color/text_secondary"
+            android:layout_marginBottom="28dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+            android:hint="University Email">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+            app:endIconMode="password_toggle"
+            android:hint="Password (min 6 characters)">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmPasswordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+            app:endIconMode="password_toggle"
+            android:hint="Confirm Password">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegister"
+            style="@style/SafeRoute.Button.Red"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:text="Create Account" android:layout_marginBottom="16dp"/>
+        <TextView android:id="@+id/tvBackToLogin"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center" android:text="Already have an account? Sign In"
+            android:textColor="@color/primary_red" android:textSize="14sp"/>
+    </LinearLayout>
+</ScrollView>

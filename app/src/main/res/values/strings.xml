@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafeRoute</string>
+    <string name="campus_name">Taylor\'s University Campus</string>
+    <string name="app_tagline">Campus Companion</string>
+
+    <!-- Login -->
+    <string name="university_email">University Email</string>
+    <string name="email_hint">you@taylors.edu.my</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="no_account">No account? Register with your university email</string>
+    <string name="register">Register</string>
+    <string name="monitored">24/7 Monitored</string>
+    <string name="campus_verified">Campus Verified</string>
+    <string name="secure">Secure</string>
+
+    <!-- Home -->
+    <string name="campus_status">CAMPUS STATUS</string>
+    <string name="all_clear">ALL CLEAR</string>
+    <string name="safe_zone">You are in a safe zone</string>
+    <string name="updated_now">Updated just now</string>
+    <string name="quick_actions">QUICK ACTIONS</string>
+    <string name="sos_emergency">SOS\nEmergency</string>
+    <string name="report_incident">Report\nIncident</string>
+    <string name="route_navigate">Route\nNavigate</string>
+    <string name="alert_others">Alert\nOthers</string>
+    <string name="campus_map">CAMPUS MAP</string>
+    <string name="full_map">Full Map ›</string>
+    <string name="recent_alerts">RECENT ALERTS</string>
+    <string name="view_all">View All ›</string>
+    <string name="safe_routes">Safe Routes</string>
+    <string name="incidents">Incidents</string>
+    <string name="students">Students</string>
+    <string name="resp_time">Resp. Time</string>
+
+    <!-- Map -->
+    <string name="campus_map_title">Campus Map</string>
+    <string name="live">LIVE</string>
+    <string name="navigate">Navigate</string>
+
+    <!-- Alerts -->
+    <string name="safety_alerts">Safety Alerts</string>
+
+    <!-- Help -->
+    <string name="campus_resources">Campus Resources</string>
+    <string name="call_now">Call Now</string>
+    <string name="open">OPEN</string>
+    <string name="closed">CLOSED</string>
+
+    <!-- Check-in -->
+    <string name="safety_check_in">Safety Check-in</string>
+    <string name="mark_safe">Mark yourself safe</string>
+    <string name="current_location">Current Location</string>
+    <string name="check_in_safe">Check In — I\'m Safe</string>
+    <string name="community_checkins">Community Check-ins</string>
+
+    <!-- SOS -->
+    <string name="sos_title">SOS Emergency</string>
+    <string name="sos_description">Your GPS location will be sent via SMS to your emergency contacts immediately.</string>
+    <string name="send_sos">SEND SOS ALERT</string>
+    <string name="sos_contacts">Emergency Contacts</string>
+    <string name="add_contact">+ Add Contact</string>
+
+    <!-- Nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_checkin">Check-in</string>
+</resources>

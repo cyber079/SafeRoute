@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alertCard"
+    style="@style/SafeRoute.Card"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="14dp" android:gravity="center_vertical">
+        <View android:id="@+id/alertIconBg"
+            android:layout_width="40dp" android:layout_height="40dp"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView android:id="@+id/tvAlertType"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="ALERT" android:textSize="10sp" android:textStyle="bold"
+                    android:paddingHorizontal="8dp" android:paddingVertical="2dp"/>
+                <TextView android:id="@+id/tvUnverified"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text=" · UNVERIFIED" android:textSize="10sp"
+                    android:textColor="@color/alert_orange" android:visibility="gone"/>
+                <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+                <TextView android:id="@+id/tvAlertTime"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Just now" android:textSize="11sp" android:textColor="@color/text_secondary"/>
+            </LinearLayout>
+            <TextView android:id="@+id/tvAlertTitle"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Incident" android:textSize="14sp" android:textStyle="bold"
+                android:textColor="@color/text_primary" android:layout_marginBottom="2dp"/>
+            <TextView android:id="@+id/tvAlertLocation"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Location" android:textSize="12sp" android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

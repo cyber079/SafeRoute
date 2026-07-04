@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="TAYLOR\'S UNIVERSITY CAMPUS"
+                android:textSize="10sp" android:textColor="@color/text_secondary"
+                android:letterSpacing="0.1"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Safe" android:textSize="22sp" android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Route" android:textSize="22sp" android:textStyle="bold"
+                    android:textColor="@color/primary_red"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnNotification"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_circle_white"
+            android:src="@drawable/ic_bell"
+            android:contentDescription="Notifications"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Campus Status Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/SafeRoute.Card"
+                app:cardBackgroundColor="@color/safe_green_light">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:padding="16dp" android:gravity="center_vertical">
+
+                    <ImageView android:layout_width="44dp" android:layout_height="44dp"
+                        android:src="@drawable/ic_shield_green"
+                        android:background="@drawable/bg_circle_green_light"
+                        android:padding="10dp"
+                        android:contentDescription="Status"/>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="CAMPUS STATUS – " android:textSize="11sp"
+                                android:textColor="@color/safe_green" android:letterSpacing="0.05"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="ALL CLEAR" android:textSize="11sp"
+                                android:textColor="@color/safe_green" android:textStyle="bold" android:letterSpacing="0.05"/>
+                        </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="You are in a safe zone"
+                            android:textSize="16sp" android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+                        <TextView
+                            android:id="@+id/tvCampusStatusSub"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Updated just now · Taylor\'s University"
+                            android:textSize="12sp" android:textColor="@color/text_secondary"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Quick Actions -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="QUICK ACTIONS" android:textSize="11sp"
+                android:textColor="@color/text_secondary" android:letterSpacing="0.1"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="20dp">
+
+                <!-- SOS -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSos"
+                    style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="90dp"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/primary_red_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="vertical" android:gravity="center">
+                        <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                            android:src="@drawable/ic_sos" android:contentDescription="SOS"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="SOS" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/primary_red" android:layout_marginTop="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Emergency" android:textSize="11sp"
+                            android:textColor="@color/primary_red"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Report -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardReport"
+                    style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="90dp"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/alert_orange_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="vertical" android:gravity="center">
+                        <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                            android:src="@drawable/ic_report" android:contentDescription="Report"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Report" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/alert_orange" android:layout_marginTop="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Incident" android:textSize="11sp"
+                            android:textColor="@color/alert_orange"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Route -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardRoute"
+                    style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="90dp"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/info_blue_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="vertical" android:gravity="center">
+                        <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                            android:src="@drawable/ic_navigate" android:contentDescription="Route"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Route" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/info_blue" android:layout_marginTop="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Navigate" android:textSize="11sp"
+                            android:textColor="@color/info_blue"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Alert Others -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAlert"
+                    style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="90dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#F3E5F5">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="vertical" android:gravity="center">
+                        <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                            android:src="@drawable/ic_alert_others" android:contentDescription="Alert"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Alert" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="#7B1FA2" android:layout_marginTop="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Others" android:textSize="11sp"
+                            android:textColor="#7B1FA2"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Campus Map preview -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="CAMPUS MAP"
+                    android:textSize="11sp" android:textColor="@color/text_secondary" android:letterSpacing="0.1"/>
+                <TextView android:id="@+id/tvFullMap" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Full Map ›"
+                    android:textSize="13sp" android:textColor="@color/primary_red" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMapPreview"
+                style="@style/SafeRoute.Card"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="16dp">
+                <!-- OSMDroid mini map preview — free, no API key needed -->
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Stats row -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="20dp">
+
+                <com.google.android.material.card.MaterialCardView style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/safe_green_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                        <TextView android:id="@+id/tvSafeRouteCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="12" android:textSize="22sp" android:textStyle="bold"
+                            android:textColor="@color/safe_green"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Safe Routes" android:textSize="11sp" android:textColor="@color/safe_green"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/primary_red_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                        <TextView android:id="@+id/tvIncidentCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0" android:textSize="22sp" android:textStyle="bold"
+                            android:textColor="@color/primary_red"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Incidents" android:textSize="11sp" android:textColor="@color/primary_red"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/info_blue_light">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="—" android:textSize="22sp" android:textStyle="bold"
+                            android:textColor="@color/info_blue"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Students" android:textSize="11sp" android:textColor="@color/info_blue"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/SafeRoute.Card"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" app:cardBackgroundColor="#EDE7F6">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="SMS" android:textSize="18sp" android:textStyle="bold"
+                            android:textColor="#7B1FA2"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Alert Mode" android:textSize="11sp" android:textColor="#7B1FA2"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Recent Alerts -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="RECENT ALERTS"
+                    android:textSize="11sp" android:textColor="@color/text_secondary" android:letterSpacing="0.1"/>
+                <TextView android:id="@+id/tvViewAll" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="View All ›"
+                    android:textSize="13sp" android:textColor="@color/primary_red" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecentAlerts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <include layout="@layout/bottom_nav"/>
+
+</LinearLayout>
