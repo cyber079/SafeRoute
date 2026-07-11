@@ -324,7 +324,7 @@ Please contact me or call emergency services.
 
 | Member | Role | Screens owned | Report sections |
 |---|---|---|---|
-| Member 1 (Leader) | Coordination + Documentation | Login, Register, Home, Help, Profile | Sec 1, 2, 3, 4, 9, 11, 12 |
+| Member 1 | Coordination + Documentation | Login, Register, Home, Help, Profile | Sec 1, 2, 3, 4, 9, 11, 12 |
 | Member 2 | UI/UX + Maps | MapActivity, Check-in UI | Sec 5 (System Design) |
 | Member 3 | Backend + Firebase | Alerts, Check-in DB, Firebase setup | Sec 6, 7 (Development + GenAI) |
 | Member 4 | SOS + Testing | SosActivity | Sec 8 (Testing) |
