@@ -41,6 +41,7 @@ public class CheckInActivity extends AppCompatActivity {
     private TextView tvCheckInCount;
 
     private DatabaseReference db;
+    private ValueEventListener checkInListener;
     private FirebaseAuth mAuth;
     private List<CheckIn> checkInList = new ArrayList<>();
     private CheckInAdapter adapter;
@@ -89,6 +90,7 @@ public class CheckInActivity extends AppCompatActivity {
             return;
         }
 
+        if (spLocation.getSelectedItem() == null) return;
         String location = spLocation.getSelectedItem().toString();
         String email = user.getEmail() != null ? user.getEmail() : "Anonymous";
         String displayName = email.contains("@") ? email.split("@")[0] : email;
@@ -111,11 +113,13 @@ public class CheckInActivity extends AppCompatActivity {
 
         db.child(key).setValue(checkIn)
             .addOnSuccessListener(unused -> {
+                if (isFinishing() || isDestroyed()) return;
                 Toast.makeText(this, "✅ Checked in at " + location, Toast.LENGTH_SHORT).show();
                 btnCheckIn.setEnabled(true);
                 btnCheckIn.setText("Check In — I'm Safe");
             })
             .addOnFailureListener(e -> {
+                if (isFinishing() || isDestroyed()) return;
                 Toast.makeText(this, "Check-in failed: " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
                 btnCheckIn.setEnabled(true);
@@ -130,9 +134,10 @@ public class CheckInActivity extends AppCompatActivity {
     private void loadCommunityCheckIns() {
         Query recentQuery = db.orderByChild("timestamp").limitToLast(20);
 
-        recentQuery.addValueEventListener(new ValueEventListener() {
+        checkInListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                if (isFinishing() || isDestroyed()) return;
                 checkInList.clear();
                 for (DataSnapshot doc : snapshot.getChildren()) {
                     CheckIn checkIn = doc.getValue(CheckIn.class);
@@ -147,9 +152,20 @@ public class CheckInActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
+                if (isFinishing() || isDestroyed()) return;
                 Toast.makeText(CheckInActivity.this,
                     "Failed to load check-ins", Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+
+        recentQuery.addValueEventListener(checkInListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (db != null && checkInListener != null) {
+            db.removeEventListener(checkInListener);
+        }
     }
 }

@@ -15,21 +15,33 @@ import com.saferoute.app.models.Contact;
 
 import java.util.List;
 
-/** ContactAdapter — used in SosActivity for emergency contacts list. Member 4. */
+/**
+ * ContactAdapter — used in SosActivity for emergency contacts list.
+ * FIX: Delete button is now wired up via OnDeleteListener callback.
+ * Member 4.
+ */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
-    private final List<Contact> contacts;
-    private final Context       context;
-
-    public ContactAdapter(List<Contact> contacts, Context context) {
-        this.contacts = contacts;
-        this.context  = context;
+    // Callback interface — SosActivity handles the actual delete logic
+    public interface OnDeleteListener {
+        void onDelete(Contact contact);
     }
 
-    @NonNull @Override
+    private final List<Contact> contacts;
+    private final Context context;
+    private final OnDeleteListener deleteListener;
+
+    public ContactAdapter(List<Contact> contacts, Context context, OnDeleteListener deleteListener) {
+        this.contacts       = contacts;
+        this.context        = context;
+        this.deleteListener = deleteListener;
+    }
+
+    @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_contact, parent, false);
+                .inflate(R.layout.item_contact, parent, false);
         return new ViewHolder(v);
     }
 
@@ -38,13 +50,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         Contact c = contacts.get(position);
         h.tvName.setText(c.getName());
         h.tvPhone.setText(c.getPhone());
+
+        // FIX: Wire up delete button — calls back to SosActivity which handles
+        // the confirmation dialog and SQLite deletion
+        h.btnDelete.setOnClickListener(v -> {
+            if (deleteListener != null) {
+                deleteListener.onDelete(c);
+            }
+        });
     }
 
-    @Override public int getItemCount() { return contacts.size(); }
+    @Override
+    public int getItemCount() {
+        return contacts.size();
+    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView    tvName, tvPhone;
         ImageButton btnDelete;
+
         ViewHolder(View v) {
             super(v);
             tvName    = v.findViewById(R.id.tvContactName);

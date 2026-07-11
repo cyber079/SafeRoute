@@ -29,12 +29,6 @@ import org.osmdroid.views.MapView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * MainActivity — Home Dashboard (Screen 1 in mockup)
- * Uses OSMDroid mini-map (free, no API key) and Firebase Realtime Database
- * (free Spark plan, no billing required) for recent alerts.
- * Member 1 owns navigation. Member 3 owns Realtime Database data loading.
- */
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvRecentAlerts;
@@ -42,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Alert> alertList = new ArrayList<>();
 
     private DatabaseReference db;
+    private Query recentAlertsQuery;
+    private ValueEventListener alertsListener;
     private TextView tvIncidentCount;
     private MapView mapPreview;
 
@@ -49,14 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Required OSMDroid config before setContentView
-        // FIX for blank map: set user agent + cache directory
         Configuration.getInstance().load(this,
-            PreferenceManager.getDefaultSharedPreferences(this));
+                PreferenceManager.getDefaultSharedPreferences(this));
         Configuration.getInstance().setUserAgentValue(getPackageName());
         Configuration.getInstance().setOsmdroidBasePath(getCacheDir());
         Configuration.getInstance().setOsmdroidTileCache(
-            new java.io.File(getCacheDir(), "osmdroid"));
+                new java.io.File(getCacheDir(), "osmdroid"));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -79,16 +73,20 @@ public class MainActivity extends AppCompatActivity {
         rvRecentAlerts.setAdapter(alertAdapter);
 
         findViewById(R.id.tvViewAll).setOnClickListener(v ->
-            startActivity(new Intent(this, AlertsActivity.class)));
+                startActivity(new Intent(this, AlertsActivity.class)));
 
         findViewById(R.id.tvFullMap).setOnClickListener(v ->
-            startActivity(new Intent(this, MapActivity.class)));
+                startActivity(new Intent(this, MapActivity.class)));
+
+        // Profile button — opens ProfileActivity
+        findViewById(R.id.btnProfile).setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileActivity.class)));
     }
 
     private void setupQuickActions() {
         MaterialCardView cardSos = findViewById(R.id.cardSos);
         cardSos.setOnClickListener(v ->
-            startActivity(new Intent(this, SosActivity.class)));
+                startActivity(new Intent(this, SosActivity.class)));
 
         MaterialCardView cardReport = findViewById(R.id.cardReport);
         cardReport.setOnClickListener(v -> {
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialCardView cardRoute = findViewById(R.id.cardRoute);
         cardRoute.setOnClickListener(v ->
-            startActivity(new Intent(this, MapActivity.class)));
+                startActivity(new Intent(this, MapActivity.class)));
 
         MaterialCardView cardAlert = findViewById(R.id.cardAlert);
         cardAlert.setOnClickListener(v -> {
@@ -109,34 +107,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Small, non-interactive OSMDroid map preview on the Home screen.
-     * Tapping "Full Map" opens the interactive MapActivity.
-     */
     private void setupMiniMap() {
         mapPreview = findViewById(R.id.mapPreview);
         mapPreview.setTileSource(TileSourceFactory.MAPNIK);
         mapPreview.getController().setZoom(15.5);
         mapPreview.getController().setCenter(TAYLORS_CAMPUS);
-        // Disable gestures so it behaves like a static preview
         mapPreview.setOnTouchListener((v, event) -> true);
     }
 
     private void loadRecentAlerts() {
-        // Load the 3 most recent incidents from Realtime Database
-        Query recentQuery = db.child("incidents")
-            .orderByChild("timestamp")
-            .limitToLast(3);
+        recentAlertsQuery = db.child("incidents")
+                .orderByChild("timestamp")
+                .limitToLast(3);
 
-        recentQuery.addValueEventListener(new ValueEventListener() {
+        alertsListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                if (isFinishing() || isDestroyed()) return;
                 alertList.clear();
                 for (DataSnapshot doc : snapshot.getChildren()) {
                     Alert alert = doc.getValue(Alert.class);
                     if (alert != null) {
                         alert.setId(doc.getKey());
-                        alertList.add(0, alert); // newest first
+                        alertList.add(0, alert);
                     }
                 }
                 alertAdapter.notifyDataSetChanged();
@@ -145,21 +138,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Fail silently on home screen — full list available in AlertsActivity
+                // Fail silently on home screen
             }
-        });
+        };
+
+        recentAlertsQuery.addValueEventListener(alertsListener);
     }
 
     private void setupBottomNav() {
         findViewById(R.id.navHome).setOnClickListener(v -> { /* already here */ });
         findViewById(R.id.navMap).setOnClickListener(v ->
-            startActivity(new Intent(this, MapActivity.class)));
+                startActivity(new Intent(this, MapActivity.class)));
         findViewById(R.id.navAlerts).setOnClickListener(v ->
-            startActivity(new Intent(this, AlertsActivity.class)));
+                startActivity(new Intent(this, AlertsActivity.class)));
         findViewById(R.id.navHelp).setOnClickListener(v ->
-            startActivity(new Intent(this, HelpActivity.class)));
+                startActivity(new Intent(this, HelpActivity.class)));
         findViewById(R.id.navCheckin).setOnClickListener(v ->
-            startActivity(new Intent(this, CheckInActivity.class)));
+                startActivity(new Intent(this, CheckInActivity.class)));
     }
 
     @Override
@@ -172,5 +167,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (mapPreview != null) mapPreview.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (recentAlertsQuery != null && alertsListener != null) {
+            recentAlertsQuery.removeEventListener(alertsListener);
+        }
+        if (mapPreview != null) {
+            mapPreview.onDetach();
+        }
     }
 }

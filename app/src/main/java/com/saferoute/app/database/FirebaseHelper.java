@@ -40,8 +40,13 @@ public class FirebaseHelper {
     public static FirebaseDatabase getDatabase() {
         if (instance == null) {
             instance = FirebaseDatabase.getInstance();
-            // Enable offline persistence — data is readable even without internet
-            instance.setPersistenceEnabled(true);
+            try {
+                // Enable offline persistence — data is readable even without internet
+                // Wrap in try-catch to prevent crashes if instance was already used
+                instance.setPersistenceEnabled(true);
+            } catch (Exception e) {
+                // Already initialized or not supported
+            }
         }
         return instance;
     }

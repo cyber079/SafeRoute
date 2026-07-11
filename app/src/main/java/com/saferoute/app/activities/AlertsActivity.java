@@ -45,6 +45,7 @@ public class AlertsActivity extends AppCompatActivity {
     private TextView tvActiveCount;
 
     private DatabaseReference db;
+    private ValueEventListener alertsListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,10 @@ public class AlertsActivity extends AppCompatActivity {
     private void loadAlertsFromDatabase() {
         Query alertsQuery = db.orderByChild("timestamp");
 
-        alertsQuery.addValueEventListener(new ValueEventListener() {
+        alertsListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                if (isFinishing() || isDestroyed()) return;
                 alertList.clear();
                 int activeCount = 0;
 
@@ -95,6 +97,7 @@ public class AlertsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
+                if (isFinishing() || isDestroyed()) return;
                 // Friendly error explaining what to do
                 String msg;
                 if (error.getCode() == DatabaseError.PERMISSION_DENIED) {
@@ -104,7 +107,17 @@ public class AlertsActivity extends AppCompatActivity {
                 }
                 Toast.makeText(AlertsActivity.this, msg, Toast.LENGTH_LONG).show();
             }
-        });
+        };
+
+        alertsQuery.addValueEventListener(alertsListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (db != null && alertsListener != null) {
+            db.removeEventListener(alertsListener);
+        }
     }
 
     private void showReportDialog() {
