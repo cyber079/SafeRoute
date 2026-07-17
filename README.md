@@ -322,12 +322,14 @@ Please contact me or call emergency services.
 
 ##10.  Team Roles & Contributions
 
-| Member | Primary Role | Screens & Modules Owned |
-| :--- | :--- | :--- |
-| **Member 1** | Coordination & Documentation | Login, Register, Home, Help, Profile |
-| **Member 2** | UI/UX & Maps | MapActivity, Check-in UI |
-| **Member 3** | Backend & Firebase | Alerts, Check-in DB, Firebase setup |
-| **Member 4** | SOS & Testing | SosActivity |
+## 👥 Team Roles & Code Contributions
+
+| Member | Role & Focus | Java Activities, Models & Adapters | XML Layouts, Views & Resources |
+| :--- | :--- | :--- | :--- |
+| **🔴 Member 1** | **Access Security & Flow Planner**<br>Managing app entry boundaries, user auth states, and high-level routing. | `LoginActivity.java`<br>`RegisterActivity.java`<br>`MainActivity.java`<br>`ResourceAdapter.java`<br>`CampusResource.java` | `activity_login.xml`<br>`activity_register.xml`<br>`activity_main.xml`<br>`item_resource.xml` |
+| **🟢 Member 2** | **Graphical Assets & Map Interface Designer**<br>Building the interactive landscape, visual themes, and OSM templates. | `MapActivity.java` | `activity_map.xml`<br>`bottom_nav.xml`<br>**Shapes:** `bg_circle_green_light.xml`, `bg_spinner.xml`, etc.<br>**Icons:** `ic_map_pin.xml`, `ic_sos.xml`, etc.<br>**Tokens:** `colors.xml`, `styles.xml`, `themes.xml`, `dimens.xml` |
+| **🔵 Member 3** | **Full-Stack Systems Integrator**<br>Cloud data streaming, persistent DB managers, and dynamic lists. | `AlertsActivity.java`<br>`CheckInActivity.java`<br>`AlertAdapter.java`, `Alert.java`<br>`CheckInAdapter.java`, `CheckIn.java`<br>`SafePath.java`<br>`FirebaseHelper.java`<br>`SafeRouteDatabase.java` | `activity_alerts.xml`<br>`activity_checkin.xml`<br>`dialog_report_incident.xml`<br>`item_alert.xml`<br>`item_checkin.xml`<br>`arrays.xml` |
+| **🟡 Member 4** | **Hardware Integration & QA Lead**<br>Evaluating system limits, compiler fixes, and offline hardware modules. | `SosActivity.java`<br>`HelpActivity.java`<br>`ContactAdapter.java`<br>`Contact.java` | `activity_sos.xml`<br>`activity_help.xml`<br>`dialog_add_contact.xml`<br>`item_contact.xml`<br>`strings.xml` |
 ---
 
 ## 11. Version History
