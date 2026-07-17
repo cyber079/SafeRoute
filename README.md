@@ -320,15 +320,14 @@ Please contact me or call emergency services.
 
 ---
 
-## 10. Team Roles
+##10.  Team Roles & Contributions
 
-| Member | Role | Screens owned | 
-|---|---|---|---|
-| Member 1 | Coordination + Documentation | Login, Register, Home, Help, Profile |
-| Member 2 | UI/UX + Maps | MapActivity, Check-in UI | 
-| Member 3 | Backend + Firebase | Alerts, Check-in DB, Firebase setup | 
-| Member 4 | SOS + Testing | SosActivity |
-
+| Member | Primary Role | Screens & Modules Owned |
+| :--- | :--- | :--- |
+| **Member 1** | Coordination & Documentation | Login, Register, Home, Help, Profile |
+| **Member 2** | UI/UX & Maps | MapActivity, Check-in UI |
+| **Member 3** | Backend & Firebase | Alerts, Check-in DB, Firebase setup |
+| **Member 4** | SOS & Testing | SosActivity |
 ---
 
 ## 11. Version History
